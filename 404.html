@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=4.2">
+  <link rel="stylesheet" href="css/style.css?v=4.3">
 </head>
 <body>
 
@@ -41,10 +41,9 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation Menu -->
-      <nav class="nav-desktop" aria-label="Основная навигация">
+            <!-- Desktop Nav Menu -->
+      <nav class="nav-menu-wrapper" aria-label="Основное меню">
         <ul class="nav-menu">
-          <!-- Catalog with Interactive Dropdown -->
           <li class="nav-item-dropdown">
             <button type="button" class="nav-link dropdown-toggle" id="catalogDropdownBtn" aria-haspopup="true" aria-expanded="false">
               Каталог
@@ -84,6 +83,7 @@
                   <span class="dropdown-item-title">💰 Официальный прайс-лист</span>
                   <span class="dropdown-item-desc">Тарифы и цены на все документы</span>
                 </a>
+
                 <div class="nav-dropdown-divider"></div>
                 <a href="katalog.html" class="nav-dropdown-all">
                   Смотреть весь каталог (30+ видов) →
@@ -91,7 +91,6 @@
               </div>
             </div>
           </li>
-          <li><a href="tseny.html" class="nav-link">Цены</a></li>
           <li><a href="/#process" class="nav-link">Как заказать</a></li>
           <li><a href="garantii.html#security" class="nav-link">Защита ГОЗНАК</a></li>
           <li><a href="garantii.html" class="nav-link">Гарантии</a></li>
@@ -118,11 +117,11 @@
       </div>
     </div>
 
-    <!-- Mobile Nav Drawer -->
+        <!-- Mobile Nav Drawer (Strictly hidden on desktop by default) -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer" style="display: none;">
       <ul class="mobile-nav-list">
         <li class="mobile-nav-group">
-          <span class="mobile-group-title">Документы каталога</span>
+          <span class="mobile-group-title">Каталог документов</span>
           <ul class="mobile-subnav">
             <li><a href="diplom-o-vysshem-obrazovanii.html" class="mobile-nav-link">🎓 Диплом о высшем образовании</a></li>
             <li><a href="diplom-bakalavra.html" class="mobile-nav-link">🎓 Диплом бакалавра</a></li>
@@ -131,8 +130,8 @@
             <li><a href="diplom-kolledzha.html" class="mobile-nav-link">📜 Диплом колледжа / техникума</a></li>
             <li><a href="attestat.html" class="mobile-nav-link">📜 Аттестаты 9 и 11 классов</a></li>
             <li><a href="diplom-sssr.html" class="mobile-nav-link">🏛️ Дипломы и аттестаты СССР</a></li>
-            <li><a href="katalog.html" class="mobile-nav-link">Все документы каталога (30+ видов) →</a></li>
-            <li><a href="tseny.html" class="mobile-nav-link">💰 Прайс-лист и тарифы 2026</a></li>
+            <li><a href="tseny.html" class="mobile-nav-link">💰 Официальный прайс-лист 2026</a></li>
+            <li><a href="katalog.html" class="mobile-nav-link" style="color: var(--accent-gold); font-weight: 700;">Все документы каталога (30+ видов) →</a></li>
           </ul>
         </li>
         <li><a href="/#process" class="mobile-nav-link">Как заказать (5 шагов)</a></li>
@@ -144,7 +143,7 @@
       </ul>
       <div class="mobile-nav-footer">
         <a href="tel:+79007430013" class="mobile-nav-phone">+7 (900) 743-00-13</a>
-        <button class="btn btn-primary btn-block" data-open-modal="callbackModal">Заказать обратный звонок</button>
+        <button class="btn btn-primary btn-block" data-open-modal="callbackModal">Заказать звонок</button>
       </div>
     </div>
   </header>

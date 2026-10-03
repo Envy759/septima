@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
   initCatalogDropdown();
   initMobileMenu();
+  highlightActiveNavigation();
   initCatalogTabs();
   initCatalogPageExtras();
   initFaqAccordion();
@@ -136,10 +137,45 @@ function initMobileMenu() {
 
   // Automatically hide if resized to desktop
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 1080) {
+    if (window.innerWidth > 1220) {
       burgerBtn.classList.remove('active');
       navDrawer.classList.remove('active');
       navDrawer.style.display = 'none';
+    }
+  });
+}
+
+/* ==========================================================================
+   Active Navigation Highlighting
+   ========================================================================== */
+function highlightActiveNavigation() {
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+  // Highlight in desktop dropdown
+  document.querySelectorAll('.nav-dropdown-item').forEach(item => {
+    const href = item.getAttribute('href');
+    if (href === currentPath) {
+      item.classList.add('active-page');
+    } else {
+      item.classList.remove('active-page');
+    }
+  });
+
+  // Highlight in desktop nav links
+  document.querySelectorAll('.nav-menu .nav-link, .nav-desktop .nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath) {
+      link.classList.add('active');
+    }
+  });
+
+  // Highlight in mobile nav drawer
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath) {
+      link.classList.add('active-page');
+    } else {
+      link.classList.remove('active-page');
     }
   });
 }
@@ -480,22 +516,36 @@ function triggerSuccess(form, submitBtn, originalBtnText) {
    Smooth Anchor Scrolling
    ========================================================================== */
 function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const isHomePage = currentPath === 'index.html' || currentPath === '';
+
+  document.querySelectorAll('a[href*="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#' || !targetId) return;
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
 
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        const headerOffset = 80;
-        const elementPosition = targetEl.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      let targetId = null;
+      if (href.startsWith('#')) {
+        targetId = href;
+      } else if (href.startsWith('/#') && isHomePage) {
+        targetId = href.slice(1);
+      } else if (href.startsWith(currentPath + '#')) {
+        targetId = '#' + href.split('#')[1];
+      }
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+      if (targetId) {
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          const headerOffset = 80;
+          const elementPosition = targetEl.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
       }
     });
   });

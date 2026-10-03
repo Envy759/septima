@@ -359,7 +359,8 @@ img, svg {
 }
 
 /* Desktop Nav Menu - Modern Pill Capsule Style */
-.nav-menu-wrapper {
+.nav-menu-wrapper,
+.nav-desktop {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -653,14 +654,17 @@ button.dropdown-toggle:hover,
   top: 100%;
   left: 0;
   right: 0;
+  max-height: calc(100vh - 75px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background-color: #ffffff;
   border-bottom: 1px solid var(--border-light);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 18px 20px 24px;
   z-index: 999;
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 1220px) {
   .mobile-nav-drawer.active {
     display: block !important;
   }
@@ -723,6 +727,13 @@ button.dropdown-toggle:hover,
 
 .mobile-subnav .mobile-nav-link:hover {
   background-color: #ffffff;
+}
+
+.mobile-nav-link.active-page,
+.mobile-subnav .mobile-nav-link.active-page {
+  color: var(--primary) !important;
+  font-weight: 700 !important;
+  background-color: rgba(18, 53, 91, 0.08) !important;
 }
 
 .mobile-nav-footer {

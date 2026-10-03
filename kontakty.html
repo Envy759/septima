@@ -23,7 +23,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- CSS Stylesheet with cache buster -->
-  <link rel="stylesheet" href="css/style.css?v=4.2">
+  <link rel="stylesheet" href="css/style.css?v=4.3">
 </head>
 <body>
 
@@ -61,10 +61,9 @@
         </div>
       </a>
 
-      <!-- Desktop Nav Menu -->
+            <!-- Desktop Nav Menu -->
       <nav class="nav-menu-wrapper" aria-label="Основное меню">
         <ul class="nav-menu">
-          <!-- Catalog with Interactive Dropdown -->
           <li class="nav-item-dropdown">
             <button type="button" class="nav-link dropdown-toggle" id="catalogDropdownBtn" aria-haspopup="true" aria-expanded="false">
               Каталог
@@ -117,7 +116,7 @@
           <li><a href="garantii.html" class="nav-link">Гарантии</a></li>
           <li><a href="dostavka-i-oplata.html" class="nav-link">Доставка и оплата</a></li>
           <li><a href="otzyvy.html" class="nav-link">Отзывы</a></li>
-          <li><a href="kontakty.html" class="nav-link active" style="color: var(--primary); font-weight: 700;">Контакты</a></li>
+          <li><a href="kontakty.html" class="nav-link">Контакты</a></li>
         </ul>
       </nav>
 
@@ -138,7 +137,7 @@
       </div>
     </div>
 
-    <!-- Mobile Nav Drawer -->
+        <!-- Mobile Nav Drawer (Strictly hidden on desktop by default) -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer" style="display: none;">
       <ul class="mobile-nav-list">
         <li class="mobile-nav-group">
@@ -151,6 +150,7 @@
             <li><a href="diplom-kolledzha.html" class="mobile-nav-link">📜 Диплом колледжа / техникума</a></li>
             <li><a href="attestat.html" class="mobile-nav-link">📜 Аттестаты 9 и 11 классов</a></li>
             <li><a href="diplom-sssr.html" class="mobile-nav-link">🏛️ Дипломы и аттестаты СССР</a></li>
+            <li><a href="tseny.html" class="mobile-nav-link">💰 Официальный прайс-лист 2026</a></li>
             <li><a href="katalog.html" class="mobile-nav-link" style="color: var(--accent-gold); font-weight: 700;">Все документы каталога (30+ видов) →</a></li>
           </ul>
         </li>
@@ -159,11 +159,11 @@
         <li><a href="garantii.html" class="mobile-nav-link">Наши гарантии</a></li>
         <li><a href="dostavka-i-oplata.html" class="mobile-nav-link">Условия доставки и оплаты</a></li>
         <li><a href="otzyvy.html" class="mobile-nav-link">Отзывы клиентов</a></li>
-        <li><a href="kontakty.html" class="mobile-nav-link" style="color: var(--primary); font-weight: 700;">Контакты и поддержка</a></li>
+        <li><a href="kontakty.html" class="mobile-nav-link">Контакты и поддержка</a></li>
       </ul>
       <div class="mobile-nav-footer">
         <a href="tel:+79007430013" class="mobile-nav-phone">+7 (900) 743-00-13</a>
-        <button class="btn btn-primary btn-block" data-open-modal="callbackModal">Заказать обратный звонок</button>
+        <button class="btn btn-primary btn-block" data-open-modal="callbackModal">Заказать звонок</button>
       </div>
     </div>
   </header>
