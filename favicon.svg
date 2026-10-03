@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="50%" stop-color="#14378f"/>
+      <stop offset="100%" stop-color="#081024"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="60%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="capShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+
+  <!-- Background Squircle -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  
+  <!-- Subtle Glass Border -->
+  <rect x="9" y="9" width="494" height="494" rx="103" fill="none" stroke="rgba(255, 255, 255, 0.20)" stroke-width="9"/>
+
+  <!-- Academic Cap Group with Shadow -->
+  <g filter="url(#capShadow)">
+    <!-- Skullcap Base (underneath cap) -->
+    <path d="M140 220 L372 220 L354 325 L256 360 L158 325 Z" fill="#e2e8f0"/>
+    <path d="M155 230 L357 230 L342 315 L256 345 L170 315 Z" fill="#f8fafc"/>
+
+    <!-- Gold Accent Seal Foundation -->
+    <path d="M155 335 L357 335 L340 375 L256 405 L172 375 Z" fill="url(#goldGrad)"/>
+
+    <!-- Mortarboard Top (Rhombus) -->
+    <!-- Left half slightly shaded for 3D depth -->
+    <polygon points="256,95 72,180 256,265 256,180" fill="#f1f5f9"/>
+    <!-- Right half crisp white -->
+    <polygon points="256,95 440,180 256,265 256,180" fill="#ffffff"/>
+    <!-- Whole top outline/fill -->
+    <polygon points="256,95 440,180 256,265 72,180" fill="none" stroke="#ffffff" stroke-width="2"/>
+
+    <!-- Gold Center Button -->
+    <ellipse cx="256" cy="180" rx="16" ry="14" fill="url(#goldGrad)"/>
+
+    <!-- Gold Tassel Cord -->
+    <path d="M256 180 C285 188, 320 200, 360 220 C380 245, 390 280, 392 315" 
+          fill="none" stroke="url(#goldGrad)" stroke-width="12" stroke-linecap="round"/>
+
+    <!-- Tassel Band -->
+    <rect x="378" y="315" width="28" height="13" rx="4" fill="#d97706"/>
+
+    <!-- Tassel Fringe Brush -->
+    <polygon points="381,328 403,328 409,380 375,380" fill="url(#goldGrad)"/>
+    <line x1="392" y1="330" x2="392" y2="378" stroke="#fde68a" stroke-width="3"/>
+  </g>
+</svg>
