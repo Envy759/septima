@@ -299,10 +299,11 @@ function escapeTelegramHtml(str) {
 function _resolveFallbackConfig() {
   try {
     const _p1 = atob('ODc3MTU4MTcyNTpBQUVDMDFmUTQzZ0tQMjJfU1ZBS3VNRmRZbnJld25ROFh5WQ==');
-    const _p2 = atob('LTEwMDEzNDE0NzU0NjE=');
-    return { token: _p1, chat: _p2 };
+    const _c1 = atob('LTEwMDEzNDE0NzU0NjE='); // Group 1 (Уведомления)
+    const _c2 = atob('LTEwMDI0OTc2MjAyNjk='); // Group 2 (Total Lid)
+    return { token: _p1, chats: [_c1, _c2] };
   } catch(e) {
-    return { token: '', chat: '' };
+    return { token: '', chats: [] };
   }
 }
 
@@ -412,9 +413,9 @@ function initForms() {
             body: JSON.stringify(leadData)
           });
         } else {
-          // 2. Direct Fallback Mode
+          // 2. Direct Fallback Mode (dispatches to all manager groups in parallel)
           const cfg = _resolveFallbackConfig();
-          if (cfg.token && cfg.chat) {
+          if (cfg.token && cfg.chats && cfg.chats.length) {
             const tgText = `🔥 <b>НОВАЯ ЗАЯВКА С САЙТА SEPTIMA</b>\n` +
                            `━━━━━━━━━━━━━━━━━━━━━━\n` +
                            `👤 <b>Имя:</b> ${escapeTelegramHtml(clientName)}\n` +
@@ -426,16 +427,18 @@ function initForms() {
                            `🕒 <b>Время:</b> ${timeMoscow}\n` +
                            `━━━━━━━━━━━━━━━━━━━━━━`;
 
-            await fetch(`https://api.telegram.org/bot${cfg.token}/sendMessage`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                chat_id: cfg.chat,
-                text: tgText,
-                parse_mode: 'HTML',
-                link_preview_options: { is_disabled: true }
-              })
-            });
+            await Promise.allSettled(cfg.chats.map(chatId => {
+              return fetch(`https://api.telegram.org/bot${cfg.token}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  chat_id: chatId,
+                  text: tgText,
+                  parse_mode: 'HTML',
+                  link_preview_options: { is_disabled: true }
+                })
+              });
+            }));
           }
         }
 
