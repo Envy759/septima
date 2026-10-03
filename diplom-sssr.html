@@ -1108,7 +1108,8 @@
         <h3 class="modal-title" id="orderModalTitle">Оформить заявку</h3>
         <p class="modal-subtitle">Без предоплаты. Оплата курьеру строго после проверки.</p>
       </div>
-      <form class="modal-form" id="modalOrderForm">
+      <form class="modal-form" id="modalOrderForm" data-ajax-form>
+        <input type="hidden" name="form_source" value="Модальное окно заявки на диплом СССР">
         <div class="form-group">
           <label for="modalDocName">Выбранный документ:</label>
           <input type="text" id="modalDocName" name="doc_name" class="form-input" readonly value="Диплом ВУЗа СССР">
@@ -1138,7 +1139,8 @@
         <h3 class="modal-title" id="callbackModalTitle">Заказать обратный звонок</h3>
         <p class="modal-subtitle">Эксперт перезвонит в течение 10 минут и ответит на все вопросы.</p>
       </div>
-      <form class="modal-form" id="callbackForm">
+      <form class="modal-form" id="callbackForm" data-ajax-form>
+        <input type="hidden" name="form_source" value="Модальное окно обратного звонка (Дипломы СССР)">
         <div class="form-group">
           <label for="callbackName">Ваше имя:</label>
           <input type="text" id="callbackName" name="name" class="form-input" placeholder="Иван" required>

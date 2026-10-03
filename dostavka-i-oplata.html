@@ -896,7 +896,8 @@
           <h3 class="form-title">Заявка на изготовление и доставку</h3>
           <p class="form-subtitle">Заполните поля ниже для связи со специалистом:</p>
 
-          <form id="ctaOrderForm" class="contact-form">
+          <form id="ctaOrderForm" class="contact-form" data-ajax-form>
+            <input type="hidden" name="form_source" value="Страница доставки и оплаты (Нижняя форма заявки)">
             <div class="form-group">
               <label class="form-label" for="ctaName">Ваше имя:</label>
               <input type="text" id="ctaName" name="name" class="form-control" placeholder="Иван" required>
