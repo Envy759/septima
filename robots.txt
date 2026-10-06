@@ -1,3 +1,5 @@
-# Block all search engines during setup and testing
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://nk-service.su/sitemap.xml
+Host: https://nk-service.su
