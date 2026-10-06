@@ -491,6 +491,15 @@ function initForms() {
 }
 
 function triggerSuccess(form, submitBtn, originalBtnText) {
+  // Yandex.Metrika conversion goal tracking
+  try {
+    if (typeof ym === 'function') {
+      ym(113466734, 'reachGoal', 'lead_form_submitted');
+    }
+  } catch (err) {
+    console.debug('[Analytics] Metrika goal tracking error:', err);
+  }
+
   // Close any opened modal
   const activeModal = document.querySelector('.modal-overlay.active, .modal-overlay[style*="display: flex"], .modal-overlay[style*="display: block"]');
   if (activeModal && typeof closeModal === 'function') {
