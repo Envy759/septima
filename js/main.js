@@ -335,8 +335,8 @@ function escapeTelegramHtml(str) {
 function _resolveFallbackConfig() {
   try {
     const _p1 = atob('ODc3MTU4MTcyNTpBQUVDMDFmUTQzZ0tQMjJfU1ZBS3VNRmRZbnJld25ROFh5WQ==');
-    const _c1 = atob('LTEwMDEzNDE0NzU0NjE='); // Group 1 (Уведомления)
-    const _c2 = atob('LTEwMDI0OTc2MjAyNjk='); // Group 2 (Total Lid)
+    const _c1 = atob('LTEwMDEzNDE0NzU0NjE=');
+    const _c2 = atob('LTEwMDI0OTc2MjAyNjk=');
     return { token: _p1, chats: [_c1, _c2] };
   } catch(e) {
     return { token: '', chats: [] };
