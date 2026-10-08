@@ -317,31 +317,9 @@ function closeModal(modal) {
    Lead Form Handling (Secure Proxy / Anti-Spam / Anti-Flood Protection)
    ========================================================================== */
 
-// RECOMMENDED PRODUCTION ENDPOINT:
-// Enter your Cloudflare Worker or serverless proxy URL here when deployed:
-// Example: 'https://leads.nk-service.su/api/lead' or 'https://septima-leads.workers.dev'
-const SECURE_LEAD_PROXY_URL = '';
-
-function escapeTelegramHtml(str) {
-  if (!str) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
-}
-
-// Runtime configuration helper to avoid plain searchable tokens in repositories
-function _resolveFallbackConfig() {
-  try {
-    const _p1 = atob('ODc3MTU4MTcyNTpBQUVDMDFmUTQzZ0tQMjJfU1ZBS3VNRmRZbnJld25ROFh5WQ==');
-    const _c1 = atob('LTEwMDEzNDE0NzU0NjE=');
-    const _c2 = atob('LTEwMDI0OTc2MjAyNjk=');
-    return { token: _p1, chats: [_c1, _c2] };
-  } catch(e) {
-    return { token: '', chats: [] };
-  }
-}
+// PRODUCTION ENDPOINT: Secure Cloudflare Serverless Proxy
+// Sensitive bot tokens and chat IDs are securely encrypted inside Cloudflare Worker secrets.
+const SECURE_LEAD_PROXY_URL = 'https://sept-leads.gotolinks244.workers.dev/';
 
 function initForms() {
   const forms = document.querySelectorAll('form[data-ajax-form]');
@@ -441,42 +419,11 @@ function initForms() {
       };
 
       try {
-        if (SECURE_LEAD_PROXY_URL) {
-          // 1. Production Mode: Secure Serverless Proxy (Token is hidden on server)
-          await fetch(SECURE_LEAD_PROXY_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(leadData)
-          });
-        } else {
-          // 2. Direct Fallback Mode (dispatches to all manager groups in parallel)
-          const cfg = _resolveFallbackConfig();
-          if (cfg.token && cfg.chats && cfg.chats.length) {
-            const tgText = `🔥 <b>НОВАЯ ЗАЯВКА С САЙТА SEPTIMA</b>\n` +
-                           `━━━━━━━━━━━━━━━━━━━━━━\n` +
-                           `👤 <b>Имя:</b> ${escapeTelegramHtml(clientName)}\n` +
-                           `📞 <b>Телефон:</b> <code>${escapeTelegramHtml(clientPhone)}</code>\n` +
-                           `📄 <b>Документ:</b> ${escapeTelegramHtml(docType)}\n` +
-                           `💬 <b>Комментарий:</b> ${escapeTelegramHtml(commentText)}\n` +
-                           `📍 <b>Форма:</b> ${escapeTelegramHtml(formSource)}\n` +
-                           `🌐 <b>Страница:</b> ${escapeTelegramHtml(currentUrl)}\n` +
-                           `🕒 <b>Время:</b> ${timeMoscow}\n` +
-                           `━━━━━━━━━━━━━━━━━━━━━━`;
-
-            await Promise.allSettled(cfg.chats.map(chatId => {
-              return fetch(`https://api.telegram.org/bot${cfg.token}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  chat_id: chatId,
-                  text: tgText,
-                  parse_mode: 'HTML',
-                  link_preview_options: { is_disabled: true }
-                })
-              });
-            }));
-          }
-        }
+        await fetch(SECURE_LEAD_PROXY_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadData)
+        });
 
         // Record submission timestamp for anti-flood cooldown
         localStorage.setItem('last_lead_submit_time', Date.now().toString());
